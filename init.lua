@@ -849,6 +849,7 @@ require('lazy').setup({
         disable_background = true,
         extend_background_behind_borders = true,
       }
+      -- require 'custom.colorschemes'
       vim.cmd.colorscheme 'rose-pine'
     end,
   },
