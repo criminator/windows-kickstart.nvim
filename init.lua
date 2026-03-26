@@ -618,7 +618,7 @@ require('lazy').setup({
         clangd = {
           cmd = {
             'clangd',
-            '--query-driver=C:/mingw64/bin/g++.exe',
+            '--query-driver=/usr/bin/g++',
           },
         },
         -- clangd = {},
