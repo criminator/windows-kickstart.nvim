@@ -182,6 +182,12 @@ vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 vim.keymap.set('v', '<leader>sr', ':s//g<Left><Left>', { noremap = true, desc = 'search and replace in visual' })
 vim.keymap.set('n', '<leader>ra', ':%s//g<Left><Left>', { noremap = true, desc = 'search and replace full file' })
 
+-- Colorschemes
+vim.keymap.set('n', '<leader>cr', function() vim.cmd.colorscheme 'rose-pine' end, { desc = 'Change colorscheme to rose-pine' })
+vim.keymap.set('n', '<leader>ct', function() vim.cmd.colorscheme 'tokyonight' end, { desc = 'Change colorscheme to tokyonight' })
+vim.keymap.set('n', '<leader>cn', function() vim.cmd.colorscheme 'nightfly' end, { desc = 'Change colorscheme to nightfly' })
+vim.keymap.set('n', '<leader>cm', function() vim.cmd.colorscheme 'moonfly' end, { desc = 'Change colorscheme to moonfly' })
+
 -- Open file explorer
 vim.keymap.set('n', '<leader>e', ':Ex<CR>', { noremap = true, desc = 'open file explorer' })
 
@@ -847,10 +853,27 @@ require('lazy').setup({
         disable_background = true,
         extend_background_behind_borders = true,
       }
-      vim.cmd.colorscheme 'rose-pine'
+      -- vim.cmd.colorscheme 'rose-pine'
     end,
   },
-  -- },
+
+  {
+    'bluz71/vim-moonfly-colors',
+    name = 'moonfly',
+    lazy = false,
+    priority = 1000,
+    -- config = function()
+    --   vim.cmd.colorscheme 'moonfly'
+    -- end,
+  },
+
+  {
+    'bluz71/vim-nightfly-colors',
+    name = 'nightfly',
+    lazy = false,
+    priority = 1000,
+    config = function() vim.cmd.colorscheme 'nightfly' end,
+  },
 
   -- Highlight todo, notes, etc in comments
   { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
