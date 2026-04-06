@@ -166,9 +166,9 @@ vim.o.confirm = true
 
 -- [[ Tab and Indentation Settings ]]
 -- Set default tab behavior (these can be overridden by guess-indent.nvim)
-vim.o.tabstop = 2 -- Number of spaces a tab counts for
-vim.o.shiftwidth = 2 -- Number of spaces for each indentation level
-vim.o.softtabstop = 2 -- Number of spaces for <Tab> in insert mode
+vim.o.tabstop = 4 -- Number of spaces a tab counts for
+vim.o.shiftwidth = 4 -- Number of spaces for each indentation level
+vim.o.softtabstop = 4 -- Number of spaces for <Tab> in insert mode
 vim.o.expandtab = true -- Convert tabs to spaces
 
 -- [[ Basic Keymaps ]]
