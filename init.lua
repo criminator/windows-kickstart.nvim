@@ -98,6 +98,11 @@ vim.g.have_nerd_font = true
 -- NOTE: You can change these options as you wish!
 --  For more options, you can see `:help option-list`
 
+-- disable comment wrapping and newline
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = '*',
+  callback = function() vim.opt.formatoptions:remove { 'c', 'r', 'o' } end,
+})
 -- Make line numbers default
 vim.o.number = true
 -- You can also add relative line numbers, to help with jumping.
@@ -190,6 +195,10 @@ vim.keymap.set('n', '<leader>cm', function() vim.cmd.colorscheme 'moonfly' end, 
 
 -- Open file explorer
 vim.keymap.set('n', '<leader>e', ':Ex<CR>', { noremap = true, desc = 'open file explorer' })
+
+-- Stay selected when doing V<
+vim.keymap.set('v', '<', '<gv')
+vim.keymap.set('v', '>', '>gv')
 
 -- Diagnostic Config & Keymaps
 -- See :help vim.diagnostic.Opts
