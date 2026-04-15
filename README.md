@@ -1,3 +1,18 @@
+# My setup
+Note that the old kickstart README is just below, so follow that for setting up nvim
+
+[!TIP]
+> On Windows, clangd was a pain to set up. But the only thing you have to do that is not
+> included in this configuration is to **add a .clangd file to your user directory**.
+> This clangd file should look like the following if you use MinGW like I do.
+```
+CompileFlags:
+  Compiler: C:/mingw64/bin/g++.exe
+  Add: [-std=c++17]
+
+```
+
+
 # kickstart.nvim
 
 ## Introduction

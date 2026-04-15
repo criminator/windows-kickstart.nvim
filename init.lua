@@ -192,6 +192,7 @@ vim.keymap.set('n', '<leader>cr', function() vim.cmd.colorscheme 'rose-pine' end
 vim.keymap.set('n', '<leader>ct', function() vim.cmd.colorscheme 'tokyonight' end, { desc = 'Change colorscheme to tokyonight' })
 vim.keymap.set('n', '<leader>cn', function() vim.cmd.colorscheme 'nightfly' end, { desc = 'Change colorscheme to nightfly' })
 vim.keymap.set('n', '<leader>cm', function() vim.cmd.colorscheme 'moonfly' end, { desc = 'Change colorscheme to moonfly' })
+vim.keymap.set('n', '<leader>co', function() vim.cmd.colorscheme 'onedark_dark' end, { desc = 'Change colorscheme to onedark_dark (default)' })
 
 -- Open file explorer
 vim.keymap.set('n', '<leader>e', ':Ex<CR>', { noremap = true, desc = 'open file explorer' })
@@ -644,7 +645,7 @@ require('lazy').setup({
         clangd = {
           cmd = {
             'clangd',
-            '--query-driver=/usr/bin/g++',
+            '--query-driver=C:/mingw64/bin/g++.exe',
           },
         },
         -- clangd = {},
@@ -848,7 +849,7 @@ require('lazy').setup({
     --
     -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
     'folke/tokyonight.nvim',
-    priority = 1000, -- Make sure to load this before all the other start plugins.
+    -- priority = 1000, -- Make sure to load this before all the other start plugins.
     config = function()
       ---@diagnostic disable-next-line: missing-fields
       require('tokyonight').setup {
@@ -880,8 +881,8 @@ require('lazy').setup({
   {
     'bluz71/vim-moonfly-colors',
     name = 'moonfly',
-    lazy = false,
-    priority = 1000,
+    lazy = true,
+    -- priority = 1000,
     -- config = function()
     --   vim.cmd.colorscheme 'moonfly'
     -- end,
@@ -890,9 +891,35 @@ require('lazy').setup({
   {
     'bluz71/vim-nightfly-colors',
     name = 'nightfly',
-    lazy = false,
+    lazy = true,
+    -- priority = 1000,
+    -- config = function() vim.cmd.colorscheme 'nightfly' end,
+  },
+
+  {
+    'olimorris/onedarkpro.nvim',
     priority = 1000,
-    config = function() vim.cmd.colorscheme 'nightfly' end,
+    lazy = false,
+    config = function()
+      require('onedarkpro').setup {
+        styles = {
+          types = 'NONE',
+          methods = 'NONE',
+          numbers = 'NONE',
+          strings = 'NONE',
+          comments = 'italic',
+          keywords = 'bold,italic',
+          constants = 'NONE',
+          functions = 'italic',
+          operators = 'NONE',
+          variables = 'NONE',
+          parameters = 'NONE',
+          conditionals = 'italic',
+          virtual_text = 'NONE',
+        },
+      }
+      vim.cmd.colorscheme 'onedark_dark'
+    end,
   },
 
   -- Highlight todo, notes, etc in comments
