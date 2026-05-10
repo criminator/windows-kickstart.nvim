@@ -891,15 +891,15 @@ require('lazy').setup({
   {
     'bluz71/vim-nightfly-colors',
     name = 'nightfly',
-    lazy = false,
+    lazy = true,
     -- priority = 1000,
-    config = function() vim.cmd.colorscheme 'nightfly' end,
+    -- config = function() vim.cmd.colorscheme 'nightfly' end,
   },
 
   {
     'olimorris/onedarkpro.nvim',
     priority = 1000,
-    lazy = true,
+    lazy = false,
     config = function()
       require('onedarkpro').setup {
         styles = {
@@ -918,7 +918,7 @@ require('lazy').setup({
           virtual_text = 'NONE',
         },
       }
-      -- vim.cmd.colorscheme 'onedark_dark'
+      vim.cmd.colorscheme 'onedark_dark'
     end,
   },
 
