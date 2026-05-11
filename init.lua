@@ -192,7 +192,10 @@ vim.keymap.set('n', '<leader>cr', function() vim.cmd.colorscheme 'rose-pine' end
 vim.keymap.set('n', '<leader>ct', function() vim.cmd.colorscheme 'tokyonight' end, { desc = 'Change colorscheme to tokyonight' })
 vim.keymap.set('n', '<leader>cn', function() vim.cmd.colorscheme 'nightfly' end, { desc = 'Change colorscheme to nightfly' })
 vim.keymap.set('n', '<leader>cm', function() vim.cmd.colorscheme 'moonfly' end, { desc = 'Change colorscheme to moonfly' })
-vim.keymap.set('n', '<leader>co', function() vim.cmd.colorscheme 'onedark_dark' end, { desc = 'Change colorscheme to onedark_dark (default)' })
+vim.keymap.set('n', '<leader>cod', function() vim.cmd.colorscheme 'onedark_dark' end, { desc = 'Change colorscheme to onedark_dark' })
+vim.keymap.set('n', '<leader>cov', function() vim.cmd.colorscheme 'vaporwave' end, { desc = 'Change colorscheme to vaporwave (default)' })
+vim.keymap.set('n', '<leader>col', function() vim.cmd.colorscheme 'onelight' end, { desc = 'Change colorscheme to onelight' })
+vim.keymap.set('n', '<leader>coo', function() vim.cmd.colorscheme 'onedark' end, { desc = 'Change colorscheme to onedark' })
 
 -- Open file explorer
 vim.keymap.set('n', '<leader>e', ':Ex<CR>', { noremap = true, desc = 'open file explorer' })
@@ -918,7 +921,7 @@ require('lazy').setup({
           virtual_text = 'NONE',
         },
       }
-      vim.cmd.colorscheme 'onedark_dark'
+      vim.cmd.colorscheme 'vaporwave'
     end,
   },
 
