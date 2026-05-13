@@ -196,6 +196,7 @@ vim.keymap.set('n', '<leader>cod', function() vim.cmd.colorscheme 'onedark_dark'
 vim.keymap.set('n', '<leader>cov', function() vim.cmd.colorscheme 'vaporwave' end, { desc = 'Change colorscheme to vaporwave (default)' })
 vim.keymap.set('n', '<leader>col', function() vim.cmd.colorscheme 'onelight' end, { desc = 'Change colorscheme to onelight' })
 vim.keymap.set('n', '<leader>coo', function() vim.cmd.colorscheme 'onedark' end, { desc = 'Change colorscheme to onedark' })
+vim.keymap.set('n', '<leader>cw', function() vim.cmd.colorscheme 'oldworld' end, { desc = 'Change colorscheme to oldworld' })
 
 -- Open file explorer
 vim.keymap.set('n', '<leader>e', ':Ex<CR>', { noremap = true, desc = 'open file explorer' })
@@ -901,8 +902,8 @@ require('lazy').setup({
 
   {
     'olimorris/onedarkpro.nvim',
-    priority = 1000,
-    lazy = false,
+    -- priority = 1000,
+    lazy = true,
     config = function()
       require('onedarkpro').setup {
         styles = {
@@ -923,6 +924,13 @@ require('lazy').setup({
       }
       vim.cmd.colorscheme 'vaporwave'
     end,
+  },
+
+  {
+    'dgox16/oldworld.nvim',
+    lazy = false,
+    priority = 1000,
+    config = function() vim.cmd.colorscheme 'oldworld' end,
   },
 
   -- Highlight todo, notes, etc in comments
