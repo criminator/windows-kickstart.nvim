@@ -652,7 +652,7 @@ require('lazy').setup({
           cmd = {
             'clangd',
             -- If you have issues with headers like iostream, uncomment below depending on if you use MinGW (g++) or MSVC (cl).
-            -- '--query-driver=C:/mingw64/bin/g++.exe',
+            '--query-driver=C:/mingw64/bin/g++.exe',
             -- '--query-driver=C:\\Program Files\\Microsoft Visual Studio\\**\\cl.exe',
           },
         },
