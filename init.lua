@@ -93,8 +93,6 @@ vim.g.maplocalleader = ' '
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = true
 
-vim.o.guifont = 'CaskaydiaCove Nerd Font Mono:h12'
-
 -- [[ Setting options ]]
 -- See `:help vim.o`
 -- NOTE: You can change these options as you wish!
@@ -648,14 +646,7 @@ require('lazy').setup({
       --  See `:help lsp-config` for information about keys and how to configure
       local servers = {
 
-        clangd = {
-          cmd = {
-            'clangd',
-            -- If you have issues with headers like iostream, uncomment below depending on if you use MinGW (g++) or MSVC (cl).
-            '--query-driver=C:/mingw64/bin/g++.exe',
-            -- '--query-driver=C:\\Program Files\\Microsoft Visual Studio\\**\\cl.exe',
-          },
-        },
+        clangd = {},
         pyright = {}, -- I want pyright too
         -- clangd = {},
         -- gopls = {},
