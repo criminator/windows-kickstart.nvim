@@ -198,8 +198,11 @@ vim.keymap.set('n', '<leader>col', function() vim.cmd.colorscheme 'onelight' end
 vim.keymap.set('n', '<leader>coo', function() vim.cmd.colorscheme 'onedark' end, { desc = 'Change colorscheme to onedark' })
 vim.keymap.set('n', '<leader>cw', function() vim.cmd.colorscheme 'oldworld' end, { desc = 'Change colorscheme to oldworld' })
 
+-- LSP Code Action fix
+vim.keymap.set('n', '<leader>lf', vim.lsp.buf.code_action, { desc = 'LSP Code Action fix (lsp fix)' })
+
 -- Open file explorer
-vim.keymap.set('n', '<leader>e', ':Ex<CR>', { noremap = true, desc = 'open file explorer' })
+-- vim.keymap.set('n', '<leader>e', ':Ex<CR>', { noremap = true, desc = 'open file explorer' })
 
 -- Stay selected when doing V<
 vim.keymap.set('v', '<', '<gv')
@@ -297,7 +300,9 @@ require('lazy').setup({
   --   config = function() require('nvim-autopairs').setup {} end,
   { import = 'kickstart.plugins.autopairs' },
   { import = 'kickstart.plugins.gitsigns' },
+  { import = 'kickstart.plugins.neo-tree' },
   { import = 'kickstart.plugins.indent_line' },
+  { import = 'custom.plugins.lualine' },
 
   -- .md preview plugin
   {
@@ -917,7 +922,7 @@ require('lazy').setup({
           virtual_text = 'NONE',
         },
       }
-      vim.cmd.colorscheme 'vaporwave'
+      -- vim.cmd.colorscheme 'vaporwave'
     end,
   },
 
@@ -925,7 +930,16 @@ require('lazy').setup({
     'dgox16/oldworld.nvim',
     lazy = false,
     priority = 1000,
-    config = function() vim.cmd.colorscheme 'oldworld' end,
+    config = function()
+      require('oldworld').setup {
+        styles = {
+          comments = { italic = true },
+          keywords = { bold = true },
+          functions = { italic = true, bold = true },
+        },
+      }
+      vim.cmd.colorscheme 'oldworld'
+    end,
   },
 
   -- Highlight todo, notes, etc in comments
@@ -1019,7 +1033,7 @@ require('lazy').setup({
   -- require 'kickstart.plugins.indent_line',
   -- -- require 'kickstart.plugins.lint',
   -- require 'kickstart.plugins.autopairs',
-  -- -- require 'kickstart.plugins.neo-tree',
+  -- require 'kickstart.plugins.neo-tree',
   -- require 'kickstart.plugins.gitsigns', -- adds gitsigns recommend keymaps
 
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
