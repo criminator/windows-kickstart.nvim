@@ -93,6 +93,8 @@ vim.g.maplocalleader = ' '
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = true
 
+vim.g.python_indent = { disable_parenthesis_indenting = 1 }
+
 vim.o.guifont = 'CaskaydiaCove Nerd Font Mono:h12'
 
 -- [[ Setting options ]]
@@ -201,7 +203,8 @@ vim.keymap.set('n', '<leader>coo', function() vim.cmd.colorscheme 'onedark' end,
 vim.keymap.set('n', '<leader>cw', function() vim.cmd.colorscheme 'oldworld' end, { desc = 'Change colorscheme to oldworld' })
 
 -- Open file explorer
-vim.keymap.set('n', '<leader>e', ':Ex<CR>', { noremap = true, desc = 'open file explorer' })
+-- Took away this option for neo-tree support with leader e
+-- vim.keymap.set('n', '<leader>e', ':Ex<CR>', { noremap = true, desc = 'open file explorer' })
 
 -- Stay selected when doing V<
 vim.keymap.set('v', '<', '<gv')
@@ -300,6 +303,7 @@ require('lazy').setup({
   { import = 'kickstart.plugins.autopairs' },
   { import = 'kickstart.plugins.gitsigns' },
   { import = 'kickstart.plugins.indent_line' },
+  { import = 'kickstart.plugins.neo-tree' },
 
   -- .md preview plugin
   {
@@ -657,15 +661,25 @@ require('lazy').setup({
           },
         },
         pyright = {}, -- I want pyright too
-        -- clangd = {},
-        -- gopls = {},
-        -- rust_analyzer = {},
-        --
+        gopls = {}, -- for go
+        -- rust_analyzer = {}, -- for rust
         -- Some languages (like typescript) have entire language plugins that can be useful:
         --    https://github.com/pmizio/typescript-tools.nvim
         --
         -- But for many setups, the LSP (`ts_ls`) will work just fine
         -- ts_ls = {},
+        emmet_language_server = {
+          filetypes = {
+            'html',
+            'css',
+            'javascriptreact',
+            'typescriptreact',
+            'sass',
+            'scss',
+            'less',
+            'heex',
+          },
+        },
       }
 
       -- Ensure the servers and tools above are installed
@@ -680,7 +694,17 @@ require('lazy').setup({
         'lua-language-server', -- Lua Language server
         'stylua', -- Used to format Lua code
         -- You can add other tools here that you want Mason to install
+        -- 'pyright',
+        -- 'gopls',
+        -- 'clangd',
+        'rust-analyzer',
+        'typescript-language-server',
+        'json-lsp',
+        'html-lsp',
+        'emmet-language-server',
       })
+
+      ensure_installed = vim.tbl_filter(function(name) return name ~= 'emmet_language_server' end, ensure_installed)
 
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
@@ -979,7 +1003,8 @@ require('lazy').setup({
   { -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
     config = function()
-      local filetypes = { 'bash', 'c', 'cpp', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc', 'latex', 'yaml' }
+      local filetypes =
+        { 'bash', 'c', 'python', 'cpp', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc', 'latex', 'yaml' }
       require('nvim-treesitter').install(filetypes)
       vim.api.nvim_create_autocmd('FileType', {
         pattern = filetypes,
