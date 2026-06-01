@@ -981,14 +981,51 @@ require('lazy').setup({
     end,
   },
 
+  -- { -- Highlight, edit, and navigate code
+  --   'nvim-treesitter/nvim-treesitter',
+  --   config = function()
+  --     local filetypes =
+  --       { 'bash', 'python', 'c', 'cpp', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc', 'latex', 'yaml' }
+  --     require('nvim-treesitter').install(filetypes)
+  --     vim.api.nvim_create_autocmd('FileType', {
+  --       pattern = filetypes,
+  --       callback = function() vim.treesitter.start() end,
+  --     })
+  --   end,
+  -- },
+
   { -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
     config = function()
-      local filetypes = { 'bash', 'c', 'cpp', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc', 'latex', 'yaml' }
-      require('nvim-treesitter').install(filetypes)
-      vim.api.nvim_create_autocmd('FileType', {
+      local filetypes = {
+        'bash',
+        'python',
+        'c',
+        'cpp',
+        'diff',
+        'html',
+        'lua',
+        'luadoc',
+        'markdown',
+        'markdown_inline',
+        'query',
+        'vim',
+        'vimdoc',
+        'latex',
+        'yaml',
+      }
+
+      -- 1. Safely install missing parsers on startup using the wrapper API
+      local treesitter = require 'nvim-treesitter'
+      treesitter.setup { install = filetypes } -- Modern v1.0 syntax handles lists cleanly
+
+      -- 2. Cleanly trigger highlighters safely using pcall to stop stack crashes
+      vim.api.nvim_create_autocmd({ 'FileType', 'BufEnter' }, {
         pattern = filetypes,
-        callback = function() vim.treesitter.start() end,
+        callback = function()
+          -- pcall ensures if a parser is compiling in the background, your editor won't crash
+          pcall(vim.treesitter.start)
+        end,
       })
     end,
   },
@@ -1002,6 +1039,7 @@ require('lazy').setup({
   --       ensure_installed = {
   --         'bash',
   --         'c',
+  --         'python',
   --         'cpp',
   --         'diff',
   --         'html',
